@@ -1,10 +1,11 @@
-FROM docker.repository.cloudera.com/cdsw/engine:9-cml1.1
+FROM docker.repository.cloudera.com/cloudera/cdsw/engine:13-cml-2020.10-2
 
 WORKDIR /tmp
 
 #The RUN commands that install an editor
 #For example: RUN apt-get install myeditor
-
+RUN rm /etc/apt/sources.list.d/cloudera.list
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg |  apt-key add -
 RUN apt-get update && apt-get dist-upgrade -y && \
     apt-get install -y --no-install-recommends \
     libapparmor1 \
